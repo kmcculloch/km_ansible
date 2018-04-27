@@ -1,0 +1,17 @@
+# vim:filetype=sh
+
+# Set path to local install of bash config and vim files
+export KM_HOME=$HOME/.opa_bash/users/mccullok
+export KM_BASH="$KM_HOME/km_bash"
+export KM_VIM="$KM_HOME/myvim"
+
+source "$KM_BASH/lib/gruvbox_256palette_osx.sh"
+
+# Set local name and email (for git, mostly)
+export KM_NAME="Kevin McCulloch"
+export KM_EMAIL="kevin_mcculloch@ao.uscourts.gov"
+
+# Source BASH settings common to all environments
+source "$KM_BASH/bashrc"
+
+alias vi="vim -u $KM_VIM/vimrc --cmd 'let &rtp = substitute(&rtp, \"/home/{{ remote_user }}/\.vim\", \"/home/{{ remote_user }}/users/mccullok/myvim/vim\", \"g\")'"

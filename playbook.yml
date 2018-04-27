@@ -1,0 +1,7 @@
+- hosts: km_bash
+  roles:
+    - km_bash
+
+- hosts: opa_bash
+  roles:
+    - opa_bash

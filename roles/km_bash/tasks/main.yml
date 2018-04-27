@@ -1,0 +1,33 @@
+---
+- name: clone down km_bash
+  git:
+    repo: 'https://github.com/kmcculloch/km_bash.git'
+    dest: ~/.km_bash
+
+- name: put my .bash_profile in place
+  template:
+    src: bash_profile.j2
+    dest: ~/.bash_profile
+
+- name: clone down myvim
+  git:
+    repo: 'https://github.com/kmcculloch/myvim.git'
+    dest: ~/.myvim
+
+- name: clone down Vundle
+  git:
+    repo: 'https://github.com/VundleVim/Vundle.vim.git'
+    dest: ~/.myvim/vim/bundle/Vundle.vim
+
+- name: symlink vim directory
+  file:
+    src: ~/.myvim/vim
+    dest: ~/.vim
+    state: link
+
+- name: symlink .vimrc
+  file:
+    src: ~/.myvim/vimrc
+    dest: ~/.vimrc
+    state: link
+

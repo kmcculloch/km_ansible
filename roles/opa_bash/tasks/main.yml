@@ -1,0 +1,32 @@
+# make tmpdir for git clone operations.
+# @see https://github.com/ansible/ansible-modules-core/issues/1912
+- name: make tmp dir
+  file:
+    path: /home/{{remote_user}}/ansible_tmp
+    state: directory
+
+- name: clone down km_bash
+  git:
+    repo: 'https://github.com/kmcculloch/km_bash.git'
+    dest: ~/.opa_bash/users/mccullok/km_bash
+
+- name: clone down myvim
+  git:
+    repo: 'https://github.com/kmcculloch/myvim'
+    dest: ~/.opa_bash/users/mccullok/myvim
+
+- name: clone down Vundle
+  git:
+    repo: 'https://github.com/VundleVim/Vundle.vim.git'
+    dest: ~/.opa_bash/users/mccullok/myvim/vim/bundle/Vundle.vim
+
+- name: put my .bash_profile in place
+  template:
+    src: bash_profile.j2
+    dest: ~/.opa_bash/users/mccullok/.bash_profile
+
+# remove tmpdir for git clone operations.
+- name: remove tmp dir
+  file:
+    path: /home/{{remote_user}}/ansible_tmp
+    state: absent
