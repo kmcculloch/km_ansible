@@ -2,6 +2,6 @@
   roles:
     - km_bash
 
-- hosts: opa_bash
+- hosts: ctho_shared
   roles:
     - opa_bash
