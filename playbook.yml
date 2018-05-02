@@ -1,4 +1,4 @@
-- hosts: km_bash
+- hosts: runners
   roles:
     - km_bash
 
