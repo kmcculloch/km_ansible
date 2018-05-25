@@ -31,3 +31,8 @@
     dest: ~/.vimrc
     state: link
 
+- name: symlink gitconfig
+  file:
+    src: ~/.km_bash/gitconfig
+    dest: ~/.gitconfig
+    state: link

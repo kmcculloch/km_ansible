@@ -1,4 +1,4 @@
-- hosts: runners
+- hosts: cloud
   roles:
     - km_bash
 
