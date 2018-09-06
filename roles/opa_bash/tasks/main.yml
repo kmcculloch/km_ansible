@@ -15,10 +15,15 @@
     repo: 'https://github.com/kmcculloch/myvim'
     dest: ~/.opa_bash/users/mccullok/myvim
 
+- name: stat Vundle
+  stat: path=~/.opa_bash/users/mccullok/myvim/vim/bundle/Vundle.vim
+  register: vundle
+
 - name: clone down Vundle
   git:
     repo: 'https://github.com/VundleVim/Vundle.vim.git'
     dest: ~/.opa_bash/users/mccullok/myvim/vim/bundle/Vundle.vim
+  when: vundle.stat.exists == False
 
 - name: put my .bash_profile in place
   template:
