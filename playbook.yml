@@ -1,7 +1,7 @@
-- hosts: cloud
+- hosts: single_user
   roles:
     - km_bash
 
-- hosts: ctho_shared
+- hosts: opa_bash
   roles:
     - opa_bash

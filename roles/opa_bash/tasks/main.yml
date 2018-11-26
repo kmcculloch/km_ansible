@@ -1,8 +1,8 @@
 # make tmpdir for git clone operations.
-# @see https://github.com/ansible/ansible-modules-core/issues/1912
+# @see https://github.com/ansible/ansible/issues/30064
 - name: make tmp dir
   file:
-    path: /home/{{remote_user}}/ansible_tmp
+    path: /home/{{opa_bash_remote_user}}/ansible_tmp
     state: directory
 
 - name: clone down km_bash
@@ -33,5 +33,5 @@
 # remove tmpdir for git clone operations.
 - name: remove tmp dir
   file:
-    path: /home/{{remote_user}}/ansible_tmp
+    path: /home/{{opa_bash_remote_user}}/ansible_tmp
     state: absent
