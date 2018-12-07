@@ -1,37 +1,34 @@
-# make tmpdir for git clone operations.
-# @see https://github.com/ansible/ansible/issues/30064
-- name: make tmp dir
+- name: make a local directory for bare repos
   file:
-    path: /home/{{opa_bash_remote_user}}/ansible_tmp
+    path: /home/{{ opa_bash_user }}/bare
     state: directory
 
-- name: clone down km_bash
-  git:
-    repo: 'https://github.com/kmcculloch/km_bash.git'
-    dest: ~/.opa_bash/users/mccullok/km_bash
+- name: make a bare origin km_bash repo
+  synchronize:
+    src: '{{ km_bash_local_repo }}'
+    dest: /home/{{ opa_bash_user }}/bare
 
-- name: clone down myvim
+- name: checkout km_bash
   git:
-    repo: 'https://github.com/kmcculloch/myvim'
-    dest: ~/.opa_bash/users/mccullok/myvim
+    repo: /home/{{ opa_bash_user }}/bare/km_bash.git
+    dest: /home/{{ opa_bash_user }}/.opa_bash/users/mccullok/km_bash
 
-- name: stat Vundle
-  stat: path=~/.opa_bash/users/mccullok/myvim/vim/bundle/Vundle.vim
-  register: vundle
+- name: make a bare origin myvim repo
+  synchronize:
+    src: '{{ myvim_local_repo }}'
+    dest: /home/{{ opa_bash_user }}/bare
 
-- name: clone down Vundle
+- name: checkout myvim
   git:
-    repo: 'https://github.com/VundleVim/Vundle.vim.git'
-    dest: ~/.opa_bash/users/mccullok/myvim/vim/bundle/Vundle.vim
-  when: vundle.stat.exists == False
+    repo: /home/{{ opa_bash_user }}/bare/myvim.git
+    dest: /home/{{ opa_bash_user }}/.opa_bash/users/mccullok/myvim
+
+- name: sync vim plugins
+  synchronize:
+    src: '{{ myvim_local_bundle }}'
+    dest: /home/{{ opa_bash_user }}/.opa_bash/users/mccullok/myvim/vim
 
 - name: put my .bash_profile in place
   template:
     src: bash_profile.j2
     dest: ~/.opa_bash/users/mccullok/.bash_profile
-
-# remove tmpdir for git clone operations.
-- name: remove tmp dir
-  file:
-    path: /home/{{opa_bash_remote_user}}/ansible_tmp
-    state: absent

@@ -14,4 +14,4 @@ export KM_EMAIL="kevin_mcculloch@ao.uscourts.gov"
 # Source BASH settings common to all environments
 source "$KM_BASH/bashrc"
 
-alias vi="vim -u $KM_VIM/vimrc --cmd 'let &rtp = substitute(&rtp, \"/home/{{ opa_bash_remote_user }}/\.vim\", \"/home/{{ opa_bash_remote_user }}/users/mccullok/myvim/vim\", \"g\")'"
+alias vi="vim -u $KM_VIM/vimrc --cmd 'let &rtp = substitute(&rtp, \"/home/{{ opa_bash_user }}/\.vim\", \"/home/{{ opa_bash_user }}/users/mccullok/myvim/vim\", \"g\")'"
