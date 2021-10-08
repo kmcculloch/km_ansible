@@ -1,7 +1,3 @@
-- hosts: single_user
-  roles:
-    - km_bash
-
-- hosts: opa_bash
+- hosts: all
   roles:
     - opa_bash
