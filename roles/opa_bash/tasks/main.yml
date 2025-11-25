@@ -32,3 +32,9 @@
   template:
     src: bash_profile.j2
     dest: ~/.opa_bash/users/mccullok/.bash_profile
+
+- name: put my source script in place
+  template:
+    src: km.j2
+    dest: ~/bin/km
+    mode: 0750
